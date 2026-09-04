@@ -2,15 +2,9 @@
 
 Run this workflow when verification is explicitly requested after a repository change.
 
-1. Read `package.json` and run only scripts declared there.
-2. Run a valid example with `npm start -- 5 60 100`.
-3. Confirm that the command succeeds and prints `Custo total da reunião: 500.00`.
-4. When source behavior changed, run relevant invalid or boundary inputs through the same `npm start --` script and confirm an actionable error and a nonzero exit status.
-5. Inspect the changed files and confirm that no unrelated file was modified.
+1. Run the complete local verification with `npm run check`.
+2. Run `npm run format` only when formatting changes are requested or need to be applied.
+3. Run a valid manual example with `npm start -- 5 60 100` when CLI behavior changes.
+4. Inspect the changed files and confirm that no unrelated file was modified.
 
-## Pending sensors
-
-- Tests are pending because no test script or test configuration exists.
-- Lint is pending because no lint script or linter configuration exists.
-- Typecheck is pending because no typecheck script or typecheck configuration exists.
-- Do not invent commands for pending sensors.
+Use only scripts declared in `package.json`; do not invent additional verification commands.

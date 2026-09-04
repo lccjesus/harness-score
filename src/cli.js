@@ -1,6 +1,6 @@
-import { calculateMeetingCost } from './meeting-cost.js';
+import { calculateMeetingCost } from "./meeting-cost.js";
 
-const usage = 'Uso: npm start -- <participantes> <minutos> <custo-por-hora>';
+const usage = "Uso: npm start -- <participantes> <minutos> <custo-por-hora>";
 const args = process.argv.slice(2);
 
 if (args.length !== 3) {
@@ -9,10 +9,15 @@ if (args.length !== 3) {
 } else {
   try {
     const [participants, durationMinutes, hourlyCost] = args.map(Number);
-    const total = calculateMeetingCost(participants, durationMinutes, hourlyCost);
+    const total = calculateMeetingCost(
+      participants,
+      durationMinutes,
+      hourlyCost,
+    );
     console.log(`Custo total da reunião: ${total.toFixed(2)}`);
   } catch (error) {
-    console.error(`Erro: ${error.message}\n${usage}`);
+    const message = error instanceof Error ? error.message : String(error);
+    console.error(`Erro: ${message}\n${usage}`);
     process.exitCode = 1;
   }
 }

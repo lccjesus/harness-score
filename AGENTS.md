@@ -12,17 +12,21 @@
 
 - `src/meeting-cost.js`: cálculo e validação de domínio.
 - `src/cli.js`: ponto de entrada do terminal.
-- `package.json`: metadados, ESM, requisito de Node.js e script `start`.
+- `test/meeting-cost.test.js`: testes com o runner nativo do Node.js.
+- `package.json`: metadados, ESM, requisito de Node.js, scripts e dependências de desenvolvimento.
+- `tsconfig.json` e `biome.json`: configuração de typecheck, lint e formatação.
+- `.github/workflows/ci.yml`: verificação automatizada em Node.js 24.
 - `PROJETO.md`: descrição e exemplo de uso.
 - `README.md` e `LICENSE`: arquivos existentes de documentação e licença.
 - `AGENTS.md`: estas instruções.
-- Não presuma testes, linter, formatter, typecheck ou outros arquivos de configuração.
 
 ## Comandos reais
 
 - Execute pelo npm: `npm start -- 5 60 100`.
 - Execute diretamente: `node src/cli.js 5 60 100`.
-- Não invente comandos de teste, lint, build ou formatação; eles não existem hoje.
+- Execute todos os checks: `npm run check`.
+- Execute separadamente: `npm test`, `npm run lint`, `npm run format` e `npm run typecheck`.
+- Não invente comandos além dos scripts declarados em `package.json`.
 
 ## Regras de domínio e erros
 
@@ -41,8 +45,8 @@
 - Respeite `"type": "module"` e Node.js `>=24`.
 - Use `import` e `export`; não use `require` nem `module.exports`.
 - Inclua a extensão `.js` em imports locais.
-- Use somente recursos nativos do Node.js.
-- Não adicione dependências de produção ou desenvolvimento nem gere lockfile sem autorização explícita.
+- Mantenha o produto sem dependências de runtime.
+- Limite ferramentas de desenvolvimento às versões fixadas em `package.json` e preserve o lockfile.
 
 ## Segurança e escopo
 
@@ -59,7 +63,8 @@
 - [ ] O pedido foi atendido sem mudanças fora do escopo.
 - [ ] A separação entre domínio puro e terminal foi preservada.
 - [ ] Todos os invariantes numéricos e comportamentos de erro continuam válidos.
-- [ ] ESM, Node.js 24 e a política sem dependências foram respeitados.
+- [ ] ESM, Node.js 24 e a ausência de dependências de runtime foram respeitados.
+- [ ] `npm run check` foi concluído com sucesso.
 - [ ] Somente comandos existentes foram usados ou documentados.
 - [ ] A validação manual relevante foi executada quando necessária.
 - [ ] Nenhum segredo, efeito externo, operação destrutiva ou mudança de histórico foi introduzido.
